@@ -17,14 +17,14 @@ const ProductItem = ({
         className={`${
           idx == 0
             ? "col-span-2 sm:col-span-2 sm:row-span-2 row-span-3 "
-            : "w-full md:w-[10.375rem] lg:w-[14.375rem] h-full md:h-[10.375rem] lg:h-[14.375rem]"
-        } col-span-1 border rounded-lg cursor-pointer relative group`}
+            : "w-full md:min-w-[10.375rem] lg:min-w-[14.375rem] h-full md:min-h-[10.375rem] lg:min-h-[14.375rem]"
+        } col-span-1 border rounded-lg hover:cursor-pointer h-full relative group`}
         htmlFor={`items${idx}`}
         draggable
         onDragStart={() => (dragOverProducts.current = idx)}
         onDragEnter={() => (draggedOverProduct.current = idx)}
         onDragEnd={handleSort}
-        onDragOver={(e) => DragOver(e, idx)}
+        onDragOver={(e) => DragOver(e)}
       >
         <label className="w-full h-full">
           {img && (
@@ -34,7 +34,7 @@ const ProductItem = ({
           )}
 
           <div
-            className={`absolute top-0 left-0 w-full h-full rounded-lg group-hover:bg-slate-800 group-hover:bg-opacity-40 ${
+            className={`absolute top-0 left-0 w-full h-full rounded-lg group-hover:bg-slate-800 group-hover:bg-opacity-40 cursor-pointer ${
               checkedItems.includes(_id) ? "bg-opacity-5 bg-slate-800" : ""
             }`}
           >

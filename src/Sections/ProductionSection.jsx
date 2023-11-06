@@ -47,18 +47,17 @@ const ProductionSection = () => {
     return setShowProduct(productClone);
   }
 
-  const DragOver = (e, idx) => {
+  const DragOver = (e) => {
     e.preventDefault();
-    console.log("overing", idx);
-    const cloneProduct = [...showProduct];
-    const temp = cloneProduct[dragOverProducts.current];
-    cloneProduct[draggedOverProduct.current] = {};
+    const productClone = [...showProduct];
 
-    setShowProduct(cloneProduct);
+    const temp = productClone[dragOverProducts.current];
+    productClone[dragOverProducts.current] =
+      productClone[draggedOverProduct.current];
+    productClone[draggedOverProduct.current] = temp;
 
-    // return showProduct()
-
-    console.log("cloneProduct ", { cloneProduct, temp });
+    // set show product
+    return setShowProduct(productClone);
   };
 
   return (
@@ -89,7 +88,7 @@ const ProductionSection = () => {
 
           {/* section body content */}
           <div className="px-4 md:px-8 py-5 md:py-10">
-            <div className="grid items-center justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 grid-flow-row-dense min-w-full">
+            <div className="grid items-start justify-between grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 grid-flow-row-dense min-w-full">
               {showProduct &&
                 showProduct.map((product, idx) => (
                   <ProductItem
@@ -105,7 +104,7 @@ const ProductionSection = () => {
                   />
                 ))}
 
-              <div className="row-span-2 col-span-1 border rounded-lg  w-full md:w-[14.375rem] h-full md:h-[14.375rem] min-h-[10.25rem]">
+              <div className="row-span-2 col-span-1 border rounded-lg  w-full md:min-w-[14.375rem] md:min-h-[8rem] md:h-[90%] h-[9rem]">
                 <label
                   className="w-full h-full flex flex-col gap-6 items-center justify-center text-center text-xl cursor-pointer"
                   htmlFor="imageUpload"
